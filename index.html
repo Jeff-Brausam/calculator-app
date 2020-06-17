@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+ 
+    <title>Calculator App</title>
+</head>
+<body>
+     <!-- Calculator markup  -->
+    <div class="calculator">
+        <div class="calculator__view">
+            <div class="calculator__screen">
+                0
+            </div>   
+        </div>
+        <div class="calculator__buttons">
+            <div class="row">
+                <button class="allClear" data-clearall="clearAll">AC</button>
+                <button class="allClear" data-clear="clear">C</button>
+                <button class="minusPlus" data-minusplus="minusPlus">+/-</button>
+                <button class="percentage" data-percentage="percentage">%</button>
+            </div>
+            <div class="row">
+                <button class="num" data-num="7">7</button>    
+                <button class="num" data-num="8">8</button>    
+                <button class="num" data-num="9">9</button>    
+                <button class="op" data-op="+">+</button>
+            </div>
+            <div class="row">
+                <button class="num" data-num="4">4</button>    
+                <button class="num" data-num="5">5</button>    
+                <button class="num" data-num="6">6</button>    
+                <button class="op"  data-op="-">-</button>
+            </div>
+            <div class="row">
+                <button class="num" data-num="1">1</button>    
+                <button class="num" data-num="2">2</button>    
+                <button class="num" data-num="3">3</button>    
+                <button class="op"  data-op="*">*</button>
+            </div>
+            <div class="row">
+                <button class="num" data-num="0">0</button>    
+                <button class="decimal" data-dec=".">.</button>    
+                <button class="op" data-op="=">=</button>    
+                <button class="op" data-op="/">/</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>

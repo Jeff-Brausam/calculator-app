@@ -1,0 +1,194 @@
+/* Use autoprefixer to fix the browser support stuff... because IE is death */
+* {
+  margin: 0;
+  padding: 0; 
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; 
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; 
+}
+
+body {
+  background-image: linear-gradient(45deg, rgb(0, 43, 56) ,rgb(0, 55, 100));
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+}
+
+.calculator {
+  max-width: 20vw;
+  border-radius: 1%;
+  margin: 25vh auto;
+  background-image: linear-gradient(to top,rgb(139, 139, 139) 10%, rgb(226, 226, 226));
+  box-shadow: 0px 5px 10px rgba(0,0,0,.35);
+  min-height: 50vh; 
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+
+}
+
+.calculator__view {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  -moz-flex: 1;
+  flex: 1;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: flex;
+  font-size: 3rem;
+}
+
+.calculator__screen {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  -moz-flex: 1;
+  flex: 1;
+  align-self: center;
+  background-color: rgb(20, 20, 20);
+  text-align: right;
+  padding: 2rem 1rem;
+  margin: 1rem 1rem;
+  color: white;
+}
+
+.calculator__buttons {
+  -webkit-flex: 7;
+  -ms-flex: 7;
+  -moz-flex: 7;
+  flex: 7;
+  width: 100%;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.row {
+  -webkit-flex: 1 0 20%;
+  -ms-flex: 1 0 20%;
+  -moz-flex: 1 0 20%;
+  flex: 1 0 20%;
+  padding: .5rem;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  justify-content: space-evenly;
+  align-content: stretch;
+  width: 100%;
+  margin: .4rem;  
+  border:none; 
+  border-radius: 5%;
+  cursor: pointer;
+  font-size: inherit;
+  box-shadow: 0px 1px 5px rgba(0,0,0,.15);  
+}
+.op {
+  color:rgb(0, 120, 156); 
+}
+
+button:hover {
+  background-color: rgb(253, 253, 253);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  box-shadow: 0px 2px 1px rgba(0,0,0,.25);
+  -webkit-transform: translateY(.1rem);
+  -ms-transform: translateY(.1rem);
+  -moz-transform: translateY(.1rem);
+  transform: translateY(.1rem);
+}
+
+/* ------- MEDIA QUERIES ------ */
+
+/* Phones */
+@media (max-width: 37.5em) {
+  html {
+    font-size: 50%; 
+  }
+  .calculator {
+    max-width: 100vw;
+    min-height: 100vh;
+    margin: 0 auto;
+    border-radius: 0;
+  }
+  .calculator {
+    font-size: 3rem;
+  }
+  .calculator__screen {
+    padding: 5rem 2rem;
+    font-size: 5rem;
+  }
+  button {
+    margin: 1.5rem;  
+  }
+}
+
+/* Tablets */
+@media (min-width: 37.5em) {
+  html { 
+    font-size: 56.25%;
+  }
+  .calculator {
+    max-width: 40vw;
+    min-height: 60vh;
+  }
+  .calculator {
+    font-size: 2rem;
+  }
+  .calculator__screen {
+    padding: 2rem 2rem;
+    font-size: 4rem;
+  }
+
+}
+
+/* Laptops */
+@media (min-width: 56.25em) {
+  html { 
+    font-size: 62.5%;
+  }
+  .calculator {
+    max-width: 35vw;
+    min-height: 60vh;
+  }
+  .calculator__screen {
+    padding: 2rem 2rem;
+    font-size: 2.5rem;
+  }
+}
+
+/* Big screens */
+@media (min-width: 75em) {
+  .calculator {
+    max-width: 20vw;
+  }
+}
+
+
+
+
+
+
