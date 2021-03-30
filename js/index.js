@@ -2,104 +2,106 @@ class Calculator{
     constructor(){
         this.displayView = document.querySelector('.calculator__screen');
         this.displayValue = 0;
-        this.inputNum = '';
+        this.inputNumber = '';
         this.result = ''; 
-        this.firstOp = null;
-        this.waitingForSecondOp = false;
+        this.firstOperator = null;
+        this.waitingForSecondOperator = false;
         this.operator = null;
         this.operators = {
-            '+': (prevNum, input) => prevNum + input,
-            '-': (prevNum, input) => prevNum - input,
-            '*': (prevNum, input) => prevNum * input,
-            '/': (prevNum, input) => prevNum / input,
-            '=': (prevNum, input) => prevNum
+            '+': function add(lastNumber, input) { return lastNumber + input },
+            '-': function subtract(lastNumber, input) { return lastNumber - input },
+            '*': function multiply(lastNumber, input) { return lastNumber * input },
+            '/': function divide(lastNumber, input) { return lastNumber / input },
+            '=': function equals(lastNumber, input) { return lastNumber }
         }    
-    }  
-    getInput(el) {
-    // Set an input number length limit
-        if (this.inputNum.length <= 10) {
-    // Store what the user enters
-            this.inputNum += el; 
-    // // Add to the UI variable
-            this.displayValue = this.inputNum;
+    }
+    addToDisplay(inputNumber) {
+        return this.displayValue = inputNumber;
+    }
+
+    getInput(number) {
+        // Set an input number length limit
+        if (this.inputNumber.length <= 10) {
+            // Store what the user enters
+            this.inputNumber += number; 
+            this.addToDisplay(this.inputNumber);
             
-    // Operator switch, allows calculation on the second variable
-            if (this.waitingForSecondOp === true){ 
-                this.waitingForSecondOp = false;
+        if (this.waitingForSecondOperator === true){ 
+            this.waitingForSecondOperator = false;
             } 
         }     
     }
-    handleOperators(nextOp){ 
+    handleOperators(nextOperator){ 
     // Input into integer for below operations, If none it's 0
-        this.inputNum = parseFloat(this.inputNum) || 0; 
+        this.inputNumber = parseFloat(this.inputNumber) || 0; 
     
     // Allows you to switch operators
-        if (this.operator && this.waitingForSecondOp) {
-            this.operator = nextOp; 
+        if (this.operator && this.waitingForSecondOperator) {
+            this.operator = nextOperator; 
             return;  
         }
     
     // No first digit yet, and update the display
-        if (this.firstOp == null){
-            this.firstOp = this.inputNum;
-            this.displayValue = this.inputNum;
+        if (this.firstOperator == null){
+            this.firstOperator = this.inputNumber;
+            this.displayValue = this.inputNumber;
         } 
     
     // Operator exists, get result with the chosen op and equation
         else if (this.operator){
-            this.prevNum = this.firstOp || 0;
-            this.result = this.operators[this.operator](this.prevNum, this.inputNum);   
+            this.prevNum = this.firstOperator || 0;
+            this.result = this.operators[this.operator](this.prevNum, this.inputNumber);   
     // Display the result value
             this.displayValue = this.result;  
     // Reset the first operand and operator switch
-            this.firstOp = this.result;
-            this.waitingForSecondOp = true;
+            this.firstOperator = this.result;
+            this.waitingForSecondOperator = true;
         }
 
-        this.waitingForSecondOp = true;
-        this.operator = nextOp;
+        this.waitingForSecondOperator = true;
+        this.operator = nextOperator;
     }
     addDec(){
     // Check theres no decimal, add to Num, if it need a 0 will add it
-        if (!this.inputNum.includes('.')) {
-            this.inputNum += 0 || '.'; 
+        if (!this.inputNumber.includes('.')) {
+            this.inputNumber += 0 || '.'; 
         } 
 
     // If you hit a decimal after a OP fix
-        if (this.waitingForSecondOp === true){
+        if (this.waitingForSecondOperator === true){
             return;
         } 
     }
     flipSign(){
-        this.inputNum *= -1;
-        this.displayValue = this.inputNum;
+        this.inputNumber *= -1;
+        this.displayValue = this.inputNumber;
     }
     percentage(){
     // Percentage the current input value
-        this.inputNum = this.inputNum / 100;
-        this.displayValue = this.inputNum;
+        this.inputNumber = this.inputNumber / 100;
+        this.displayValue = this.inputNumber;
     
     // A result exists, get a percentage of that result
-        if (this.result && !this.inputNum) {
+        if (this.result && !this.inputNumber) {
             this.prevNum = this.result / 100;
             this.displayValue = this.prevNum;
         }
     }
     clearPrevInput() {
-        this.inputNum = '';
+        this.inputNumber = '';
     } 
     clearLast(){
         this.displayView.innerHTML = 0;
-        this.inputNum = '';   
+        this.inputNumber = '';   
     }
     clearAll(){
         this.displayView.innerHTML = 0;
-        this.inputNum ='';
+        this.inputNumber ='';
         this.result = '';
         this.prevNum = '';
-        this.nextOp = '';
-        this.firstOp = null;
-        this.waitingForSecondOp = false;
+        this.nextOperator = '';
+        this.firstOperator = null;
+        this.waitingForSecondOperator = false;
         this.operator = null;
     }
     updateUI() { 
