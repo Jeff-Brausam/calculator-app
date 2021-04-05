@@ -6,7 +6,7 @@ class Calculator{
         this.result = ''; 
         this.firstOperator = null;
         this.waitingForSecondOperator = false;
-        this.operator = null;
+        this.currentOperator = null;
         this.operators = {
             '+': function add(lastNumber, input) { return lastNumber + input },
             '-': function subtract(lastNumber, input) { return lastNumber - input },
@@ -15,6 +15,7 @@ class Calculator{
             '=': function equals(lastNumber, input) { return lastNumber }
         }    
     }
+    
     addToDisplay(inputNumber) {
         return this.displayValue = inputNumber;
     }
@@ -36,8 +37,8 @@ class Calculator{
         this.inputNumber = parseFloat(this.inputNumber) || 0; 
     
     // Allows you to switch operators
-        if (this.operator && this.waitingForSecondOperator) {
-            this.operator = nextOperator; 
+        if (this.currentOperator && this.waitingForSecondOperator) {
+            this.currentOperator = nextOperator; 
             return;  
         }
     
@@ -48,9 +49,9 @@ class Calculator{
         } 
     
     // Operator exists, get result with the chosen op and equation
-        else if (this.operator){
+        else if (this.currentOperator){
             this.prevNum = this.firstOperator || 0;
-            this.result = this.operators[this.operator](this.prevNum, this.inputNumber);   
+            this.result = this.operators[this.currentOperator](this.prevNum, this.inputNumber);   
     // Display the result value
             this.displayValue = this.result;  
     // Reset the first operand and operator switch
@@ -59,7 +60,7 @@ class Calculator{
         }
 
         this.waitingForSecondOperator = true;
-        this.operator = nextOperator;
+        this.currentOperator = nextOperator;
     }
     addDec(){
     // Check theres no decimal, add to Num, if it need a 0 will add it
@@ -102,7 +103,7 @@ class Calculator{
         this.nextOperator = '';
         this.firstOperator = null;
         this.waitingForSecondOperator = false;
-        this.operator = null;
+        this.currentOperator = null;
     }
     updateUI() { 
     // Format the display value
